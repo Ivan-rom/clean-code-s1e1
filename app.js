@@ -2,9 +2,9 @@
 //Solution: Add interactivity so the user can manage daily tasks.
 //Break things down into smaller steps and take each step at a time.
 
-var taskInput = document.getElementById("new-task");
-var addButton = document.getElementsByTagName("button")[0];
-var incompleteTaskHolder = document.getElementById("incompleteTasks");
+var taskInput = document.getElementById("new-task-input");
+var addButton = document.getElementById("new-task-btn");
+var incompleteTaskHolder = document.getElementById("incomplete-tasks");
 var completedTasksHolder = document.getElementById("completed-tasks");
 
 var createNewTaskElement = function (taskString) {
@@ -57,10 +57,10 @@ var editTask = function () {
 
   var listItem = this.parentNode;
 
-  var editInput = listItem.querySelector("input[type=text]");
-  var label = listItem.querySelector("label");
-  var editBtn = listItem.querySelector(".edit");
-  var containsClass = listItem.classList.contains("editMode");
+  var editInput = listItem.querySelector(".task__input");
+  var label = listItem.querySelector(".task__text");
+  var editBtn = listItem.querySelector(".task__button");
+  var containsClass = listItem.classList.contains("task--edit-mode");
 
   if (containsClass) {
     //label becomes the inputs value.
@@ -71,7 +71,7 @@ var editTask = function () {
     editBtn.innerText = "Save";
   }
 
-  listItem.classList.toggle("editMode");
+  listItem.classList.toggle("task--edit-mode");
 };
 
 var deleteTask = function () {
@@ -110,9 +110,9 @@ addButton.addEventListener("click", ajaxRequest);
 var bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
   console.log("bind list item events");
 
-  var checkBox = taskListItem.querySelector("input[type=checkbox]");
-  var editButton = taskListItem.querySelector("button.edit");
-  var deleteButton = taskListItem.querySelector("button.delete");
+  var checkBox = taskListItem.querySelector(".task__check");
+  var editButton = taskListItem.querySelector(".task__button");
+  var deleteButton = taskListItem.querySelector(".task__delete-button");
 
   editButton.onclick = editTask;
   deleteButton.onclick = deleteTask;
