@@ -103,13 +103,7 @@ var taskCompletedToggle = function () {
   }
 };
 
-var ajaxRequest = function () {
-  console.log("AJAX Request");
-};
-
 addButton.onclick = addTask;
-addButton.addEventListener("click", addTask);
-addButton.addEventListener("click", ajaxRequest);
 
 var bindTaskEvents = function (taskListItem) {
   console.log("bind list item events");
