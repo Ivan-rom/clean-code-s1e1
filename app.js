@@ -8,35 +8,51 @@ var incompleteTaskHolder = document.getElementById("incomplete-tasks");
 var completedTasksHolder = document.getElementById("completed-tasks");
 
 var createNewTaskElement = function (taskString) {
-  var listItem = document.createElement("li");
+  var deleteButtonImg = createElement({
+    tagName: "img",
+    className: "task__delete-image",
+    options: {
+      src: "./remove.svg",
+      alt: "remove",
+    },
+  });
 
-  var checkBox = document.createElement("input");
-  var label = document.createElement("label");
-  var editInput = document.createElement("input");
-  var editButton = document.createElement("button");
+  const elements = [
+    {
+      tagName: "input",
+      className: "task__check",
+      options: { type: "checkbox" },
+    },
+    {
+      tagName: "label",
+      className: "task__text",
+      options: { html: [taskString] },
+    },
+    {
+      tagName: "input",
+      className: "task__input",
+      options: { type: "text" },
+    },
+    {
+      tagName: "button",
+      className: "task__button button",
+      options: { html: ["Edit"] },
+    },
+    {
+      tagName: "button",
+      className: "task__delete-button button",
+      options: { html: [deleteButtonImg] },
+    },
+  ].map((element) => createElement(element));
 
-  var deleteButton = document.createElement("button");
-  var deleteButtonImg = document.createElement("img");
+  var listItem = createElement({
+    tagName: "li",
+    className: "incomplete-tasks__task task",
+    options: {
+      html: elements,
+    },
+  });
 
-  label.innerText = taskString;
-  label.className = "task";
-
-  checkBox.type = "checkbox";
-  editInput.type = "text";
-  editInput.className = "task";
-
-  editButton.innerText = "Edit";
-  editButton.className = "edit";
-
-  deleteButton.className = "delete";
-  deleteButtonImg.src = "./remove.svg";
-  deleteButton.appendChild(deleteButtonImg);
-
-  listItem.appendChild(checkBox);
-  listItem.appendChild(label);
-  listItem.appendChild(editInput);
-  listItem.appendChild(editButton);
-  listItem.appendChild(deleteButton);
   return listItem;
 };
 
@@ -125,4 +141,20 @@ for (var i = 0; i < incompleteTaskHolder.children.length; i++) {
 
 for (var i = 0; i < completedTasksHolder.children.length; i++) {
   bindTaskEvents(completedTasksHolder.children[i], taskIncomplete);
+}
+
+function createElement({ tagName, className, options = null }) {
+  const element = document.createElement(tagName);
+  element.className = className;
+  if (options) {
+    if (options.src) {
+      element.src = options.src;
+      element.alt = options.alt;
+    } else if (options.type) {
+      element.type = options.type;
+    } else if (options.html) {
+      options.html.forEach((html) => element.append(html));
+    }
+  }
+  return element;
 }
