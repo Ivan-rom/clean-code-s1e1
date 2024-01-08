@@ -7,7 +7,10 @@ var addButton = document.getElementById("new-task-btn");
 var incompleteTaskHolder = document.getElementById("incomplete-tasks");
 var completedTasksHolder = document.getElementById("completed-tasks");
 
-var createNewTaskElement = function (taskString) {
+var addTask = function () {
+  if (!taskInput.value) return;
+  const taskString = taskInput.value;
+
   var deleteButtonImg = createElement({
     tagName: "img",
     className: "task__delete-image",
@@ -52,14 +55,6 @@ var createNewTaskElement = function (taskString) {
       html: elements,
     },
   });
-
-  return listItem;
-};
-
-var addTask = function () {
-  console.log("Add Task...");
-  if (!taskInput.value) return;
-  var listItem = createNewTaskElement(taskInput.value);
 
   incompleteTaskHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskCompleted);
