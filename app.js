@@ -63,9 +63,6 @@ var addTask = function () {
 };
 
 var editTask = function () {
-  console.log("Edit Task...");
-  console.log("Change 'edit' to 'save'");
-
   var listItem = this.parentNode;
 
   var editInput = listItem.querySelector(".task__input");
@@ -86,8 +83,6 @@ var editTask = function () {
 };
 
 var deleteTask = function () {
-  console.log("Delete Task...");
-
   var listItem = this.parentNode;
   var ul = listItem.parentNode;
 
@@ -106,8 +101,6 @@ var taskCompletedToggle = function () {
 addButton.onclick = addTask;
 
 var bindTaskEvents = function (taskListItem) {
-  console.log("bind list item events");
-
   var checkBox = taskListItem.querySelector(".task__check");
   var editButton = taskListItem.querySelector(".task__button");
   var deleteButton = taskListItem.querySelector(".task__delete-button");
