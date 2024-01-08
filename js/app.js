@@ -15,7 +15,7 @@ var addTask = function () {
     tagName: "img",
     className: "task__delete-image",
     options: {
-      src: "./remove.svg",
+      src: "../assets/remove.svg",
       alt: "remove",
     },
   });
